@@ -1,0 +1,23 @@
+{
+    "tiers": {
+      "S": [
+        {
+          "name": "Filament X",
+          "tier": "S",
+          "image": "filament_x.png",
+          "description": "Amazing filament with great properties.",
+          "material": {
+            "type": "PLA",
+            "color": "Black"
+          },
+          "pros": ["Easy to print", "Strong"],
+          "cons": ["Slightly brittle"],
+          "useCase": "General printing"
+        }
+      ],
+      "A": [
+      ],
+      "B": [
+      ]
+    }
+}
