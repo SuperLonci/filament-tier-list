@@ -16,16 +16,21 @@ export interface Filament {
 
 export interface TierList {
     tiers: {
-      [tierName: string]: {
+        [tierName: string]: {
         name: string; // Tier name (matches key)
         filaments: Filament[]; // Array of filament objects
-      };
+        };
     };
-  }
+}
 
 export interface Image {
     src: string;
     alt: string; // Description for accessibility
     width?: number; // Optional width
     height?: number; // Optional height
-  }
+}
+
+export interface FilamentDetailsProps {
+    filament: Filament;
+    on: (event: CloseEvent) => void;
+}
