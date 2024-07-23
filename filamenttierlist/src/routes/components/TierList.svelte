@@ -1,6 +1,6 @@
 <script lang="ts">
-    import type { TierList, Filament } from '../interfaces';
-    import { fetchDataFromJSON } from './fetchDataFromJSON';
+    import type { TierList, Filament, FilamentDetailsProps } from '$lib/interfaces';
+    import { fetchDataFromJSON } from '$lib/dataAccess/fetchDataFromJSON';
     import FilamentDetails from './FilamentDetails.svelte';
   
     let tierData: TierList | undefined = undefined;
@@ -21,69 +21,44 @@
     function closeDetails() {
       selectedFilament = null;
     }
-  </script>
-  
-  {#if tierData}
-    <div class="tier-list">
-      {#each Object.entries(tierData.tiers) as [tierName, tier]}
-        <div class="tier-container">
-          <h2 class="tier-name">{tierName} Tier</h2>
-          <div class="tier-items">
-            {#each tier.filaments as filament}
-              <div class="tier-item" on:click={() => handleFilamentClick(filament)}>
-                {filament.image && <img src={filament.image} alt={filament.name} />}
-                <span>{filament.name}</span>
-              </div>
-            {/each}
-          </div>
+</script>
+
+{#if tierData}
+<div class="tier-list">
+    {#each Object.entries(tierData.tiers) as [tierName, tier]}
+    <div class="tier-container">
+        <h2 class="tier-name">{tierName} Tier</h2>
+        <div class="tier-items">
+        {#each tier.filaments as filament}
+        <button class="tier-item" type="button" on:click={() => handleFilamentClick(filament)}>
+            {#if filament.image}
+                <img
+                src={filament.image.src}
+                alt={filament.name}
+                loading="lazy"
+                on:error={(event) => {
+                    if (event.target instanceof HTMLImageElement) { // Check if target exists before accessing style
+                    event.target.style.display = 'none';
+                    }
+                    console.error('Error loading image:', filament.image);
+                }}
+                />
+            {/if}
+            <span>{filament.name}</span>
+            </button>
+        {/each}
         </div>
-      {/each}
     </div>
-  
-    {#if selectedFilament}
-      <FilamentDetails filament={selectedFilament} on:close={closeDetails} />
-    {/if}
-  {:else}
+    {/each}
+</div>
+
+{#if selectedFilament}
+    <FilamentDetails filament={selectedFilament} on:close={closeDetails} />
+{/if}
+{:else}
     <p>Loading...</p>
-  {/if}
-  
-  <style>
-    .tier-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-  
-    .tier-container {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-  
-    .tier-name {
-      font-weight: bold;
-    }
-  
-    .tier-items {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-  
-    .tier-item {
-      display: flex;
-      align-items: center;
-      padding: 0.5rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-  
-    .tier-item img {
-      width: 50px;
-      height: 50px;
-      object-fit: cover;
-      margin-right: 0.5rem;
-    }
-  </style>
-  
+{/if}
+
+<style>
+    @import '../../styles/tier-list.css';
+</style>
