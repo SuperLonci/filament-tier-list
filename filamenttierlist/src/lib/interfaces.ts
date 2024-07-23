@@ -7,11 +7,11 @@ export interface Filament {
     name: string;
     tier: string;
     image?: Image;
-    description: string;
-    material: Material;
-    pros: string[];
-    cons: string[];
-    useCase: string;
+    description?: string;
+    material?: Material;
+    pros?: string[];
+    cons?: string[];
+    useCase?: string;
 }
 
 export interface TierList {
