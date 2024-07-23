@@ -1,15 +1,16 @@
 <script lang="ts">
+    import { onMount } from 'svelte';
     import type { TierList, Filament, FilamentDetailsProps } from '$lib/interfaces';
-    import { fetchDataFromJSON } from '$lib/dataAccess/fetchDataFromJSON';
+    import { fetchDataFromCode } from '$lib/dataAccess/fetchDataFromCode';
     import FilamentDetails from './FilamentDetails.svelte';
   
     let tierData: TierList | null = null;
     let selectedFilament: Filament | null = null;
-    let isLoading = true;
+    let isLoading = false;
   
-    async function onMount() {
+    async function fetchData() {
       try {
-        tierData = await fetchDataFromJSON();
+        tierData = await fetchDataFromCode();
         isLoading = false;
       } catch (error) {
         console.error('Error fetching tier list data:', error);
@@ -23,6 +24,8 @@
     function closeDetails() {
       selectedFilament = null;
     }
+
+    onMount(fetchData);
 </script>
 
 {#if isLoading}
