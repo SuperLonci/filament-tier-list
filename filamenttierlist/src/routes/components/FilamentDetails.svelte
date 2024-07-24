@@ -1,50 +1,44 @@
 <script lang="ts">
-    import { createEventDispatcher } from 'svelte';
     import type { Filament } from '$lib/interfaces';
-
-    export let filament: Filament | null = null;
-
+    import { createEventDispatcher } from 'svelte';
+  
+    export let filament: Filament;
     const dispatch = createEventDispatcher();
-
-    function handleClose() {
-        dispatch('close');
+  
+    function closeModal() {
+      dispatch('close');
     }
 </script>
 
-{#if filament}
-<div class="details-popup">
+<div class="filament-details-modal">
+    <button type="button" class="close-btn" on:click={closeModal}>&times;</button>
     <h2>{filament.name}</h2>
-    {#if filament.image}
-        <img
-        src={filament.image.src}
-        alt={filament.name}
-        loading="lazy"
-        on:error={(event) => {
-            if (event.target instanceof HTMLImageElement) { 
-                event.target.style.display = 'none';
-            }
-            console.error('Error loading image:', filament.image);
-        }}
-        />
-    {/if}    
-    <!-- TODO: fallback image -->
-    <p>{filament.description}</p>
-    <h3>Material</h3>
-    <p>{filament.material.type} ({filament.material.color})</p>
-    <h3>Pros</h3>
-    <ul>
-        {#each filament.pros as pro}
-            <li>{pro}</li>
-        {/each}
-    </ul>
-    <h3>Cons</h3>
-    <ul>
-        {#each filament.cons as con}
-            <li>{con}</li>
-        {/each}
-    </ul>
-    <h3>Use Case</h3>
-    <p>{filament.useCase}</p>
-    <button on:click={handleClose}>Close</button>
+
+    <div class="details-container">
+        <p><b>Material:</b> {filament.material?.type || 'No material information available'}</p>
+        <p><b>Price:</b> {filament.price || 'No price information available'}</p>
+        {#if filament.description}
+        <p><b>Description:</b> {filament.description}</p>
+        {/if}
+        {#if filament.pros}
+        <h3>Pros</h3>
+        <ul>
+            {#each filament.pros as pro}
+                <li>{pro}</li>
+            {/each}
+        </ul>
+    {/if}
+        {#if filament.cons}
+        <h3>Cons</h3>
+        <ul>
+            {#each filament.cons as pro}
+                <li>{pro}</li>
+            {/each}
+        </ul>
+    {/if}
+    </div>
 </div>
-{/if}
+
+<!-- <style>
+    @import '../../styles/filament-details.css';
+</style> -->
