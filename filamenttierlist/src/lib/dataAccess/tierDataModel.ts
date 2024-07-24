@@ -6,6 +6,7 @@ export class FilamentData implements Filament {
         public tier: string,
         public description: string,
         public material: Material,
+        public price: string,
         public pros: string[],
         public cons: string[],
         public useCase: string,

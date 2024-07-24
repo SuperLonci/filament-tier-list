@@ -9,6 +9,7 @@ export interface Filament {
     image?: Image;
     description?: string;
     material?: Material;
+    price?: string;
     pros?: string[];
     cons?: string[];
     useCase?: string;
