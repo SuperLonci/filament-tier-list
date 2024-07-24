@@ -1,37 +1,97 @@
 .tier-list {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
-  }
+    gap: 0.1rem;
+    padding: 0.5rem;
+    background-color: #1c1c1c;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
 
 .tier-container {
-display: flex;
-align-items: center;
-gap: 1rem;
+    background-color: #ffffff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
 }
 
 .tier-name {
-font-weight: bold;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+    margin-top: 0rem;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 1rem 0;
 }
 
 .tier-items {
-display: flex;
-flex-wrap: wrap;
-gap: 0.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
 }
 
 .tier-item {
-display: flex;
-align-items: center;
-padding: 0.5rem 1rem;
-border: 1px solid #ddd;
-border-radius: 4px;
-cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fafafa;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.tier-item:hover,
+.tier-item:focus {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
 }
 
 .tier-item img {
-width: 50px;
-height: 50px;
-object-fit: cover;
-margin-right: 0.5rem;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 0.75rem;
+    border-radius: 4px;
+}
+
+.tier-item span {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Clear ranking colors for each tier */
+.tier-container[data-tier="S"] {
+    background-color: #fff8e1; /* Light gold background */
+    border-left-color: #ffd700; /* Strong gold border */
+    background: linear-gradient(145deg, #ffd700, #ffcc00); /* Shiny gold effect */
+    box-shadow: 0 4px 8px rgba(255, 215, 0, 0.5); /* Gold shadow for extra shine */
+}
+
+.tier-container[data-tier="A"] {
+    background: linear-gradient(145deg, #95e399, #4caf50); /* Green gradient */
+    border-left-color: #06840b; /* Darker green border */
+}
+
+.tier-container[data-tier="B"] {
+    background: linear-gradient(145deg, #efdda8, #fbc02d); /* Yellow gradient */
+    border-left-color: #a47600; /* Yellow border */
+}
+
+.tier-container[data-tier="C"] {
+    background: linear-gradient(145deg, #f19896, #e53935); /* Red gradient */
+    border-left-color: #be0603; /* Dark red border */
+}
+
+.tier-container[data-tier="F"] {
+    background: linear-gradient(145deg, #ca7994, #ec407a); /* Pink gradient */
+    border-left-color: #a00035; /* Dark pink border */
 }

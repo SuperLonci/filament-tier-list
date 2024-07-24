@@ -35,7 +35,7 @@
 {:else if (tierData)}
     <div class="tier-list">
         {#each Object.entries(tierData.tiers) as [tierName, tier]}
-        <div class="tier-container">
+        <div class="tier-container" data-tier={tierName}>
             <h2 class="tier-name">{tierName} Tier</h2>
             <div class="tier-items">
                 {#each tier.filaments as filament}
