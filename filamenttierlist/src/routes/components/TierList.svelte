@@ -7,10 +7,11 @@
     let tierData: TierList | null = null;
     let selectedFilament: Filament | null = null;
     let isLoading = false;
+    let fetchData = new fetchDataFromCode;
   
-    async function fetchData() {
+    async function loadData() {
       try {
-        tierData = await fetchDataFromCode();
+        tierData = await fetchData.fetchData();
         isLoading = false;
       } catch (error) {
         console.error('Error fetching tier list data:', error);
@@ -25,7 +26,7 @@
       selectedFilament = null;
     }
 
-    onMount(fetchData);
+    onMount(loadData);
 </script>
 
 {#if isLoading}
