@@ -3,6 +3,7 @@
     import type { TierList, Filament, FilamentDetailsProps } from '$lib/interfaces';
     import { fetchDataFromCode } from '$lib/dataAccess/fetchDataFromCode';
     import FilamentDetails from './FilamentDetails.svelte';
+    import FilamentItem from './FilamentItem.svelte';
   
     let tierData: TierList | null = null;
     let selectedFilament: Filament | null = null;
@@ -18,10 +19,10 @@
       }
     }
   
-    function handleFilamentClick(filament: Filament) {
-      selectedFilament = filament;
-    }
-  
+    function handleFilamentClick(event: CustomEvent<FilamentDetailsProps>) {
+    selectedFilament = event.detail.filament;
+}
+
     function closeDetails() {
       selectedFilament = null;
     }
@@ -37,24 +38,12 @@
         <div class="tier-container">
             <h2 class="tier-name">{tierName} Tier</h2>
             <div class="tier-items">
-            {#each tier.filaments as filament}
-            <button class="tier-item" type="button" on:click={() => handleFilamentClick(filament)}>
-                {#if filament.image}
-                    <img
-                    src={filament.image.src}
-                    alt={filament.name}
-                    loading="lazy"
-                    on:error={(event) => {
-                        if (event.target instanceof HTMLImageElement) { // Check if target exists before accessing style
-                        event.target.style.display = 'none';
-                        }
-                        console.error('Error loading image:', filament.image);
-                    }}
+                {#each tier.filaments as filament}
+                    <FilamentItem
+                        filament={filament}
+                        on:click={handleFilamentClick}
                     />
-                {/if}
-                <span>{filament.name}</span>
-                </button>
-            {/each}
+                {/each}
             </div>
         </div>
         {/each}

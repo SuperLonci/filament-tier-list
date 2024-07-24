@@ -1,0 +1,29 @@
+.filament-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
+    cursor: pointer;
+}
+.filament-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #e9ecef;
+}
+.filament-item img {
+    max-width: 100px;
+    max-height: 100px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+.filament-item span {
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
