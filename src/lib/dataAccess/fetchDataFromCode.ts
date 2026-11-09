@@ -1,4 +1,4 @@
-import type { TierList } from "$lib/interfaces";
+import type { TierList } from "#lib/interfaces.js";
 import { FetchData } from "./fetchData";
 
 

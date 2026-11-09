@@ -1,7 +1,7 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import type { TierList, Filament, FilamentDetailsProps } from '$lib/interfaces';
-    import { fetchDataFromCode } from '$lib/dataAccess/fetchDataFromCode';
+    import type { TierList, Filament, FilamentDetailsProps } from '#lib/interfaces.js';
+    import { fetchDataFromCode } from '#lib/dataAccess/fetchDataFromCode.js';
     import FilamentDetails from './FilamentDetails.svelte';
     import FilamentItem from './FilamentItem.svelte';
   

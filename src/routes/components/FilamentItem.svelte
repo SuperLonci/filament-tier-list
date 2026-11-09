@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type { Filament } from '$lib/interfaces';
+    import type { Filament } from '#lib/interfaces.js';
     import { createEventDispatcher } from 'svelte';
 
     export let filament: Filament;
